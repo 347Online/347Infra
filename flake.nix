@@ -23,6 +23,7 @@
     let
       defaultUsername = "katie";
       nixosSharedModules = [
+        ./modules/nixos
         sops-nix.nixosModules.sops
       ];
     in
