@@ -24,8 +24,6 @@
       defaultUsername = "katie";
       nixosSharedModules = [
         sops-nix.nixosModules.sops
-
-        ./modules/nixos
       ];
     in
     {

@@ -5,6 +5,8 @@
 }:
 
 {
+  sops.defaultSopsFile = ./.aspen-secrets.yaml;
+
   imports = [
     ./services
 
