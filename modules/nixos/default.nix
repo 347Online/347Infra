@@ -4,6 +4,6 @@
 
   security.pam = {
     sshAgentAuth.enable = lib.mkDefault true;
-    services.sudo.sshAgentAuth.enable = lib.mkDefault true;
+    services.sudo.sshAgentAuth = lib.mkDefault true;
   };
 }
