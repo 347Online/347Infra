@@ -22,6 +22,11 @@
     }@inputs:
     let
       defaultUsername = "katie";
+      nixosSharedModules = [
+        sops-nix.nixosModules.sops
+
+        ./modules/nixos
+      ];
     in
     {
       nixosConfigurations.Aspen = nixpkgs.lib.nixosSystem {
@@ -29,9 +34,7 @@
           inherit inputs;
           username = defaultUsername;
         };
-        modules = [
-          sops-nix.nixosModules.sops
-
+        modules = nixosSharedModules ++ [
           nix-minecraft.nixosModules.minecraft-servers
           ./hosts/Aspen
         ];
@@ -41,9 +44,7 @@
           inherit inputs;
           username = defaultUsername;
         };
-        modules = [
-          sops-nix.nixosModules.sops
-
+        modules = nixosSharedModules ++ [
           ./hosts/Astrid
         ];
       };
