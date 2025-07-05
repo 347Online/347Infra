@@ -8,6 +8,7 @@
     {
       self,
       nixpkgs,
+      nix-minecraft,
     }@inputs:
     let
       defaultUsername = "katie";
@@ -17,12 +18,13 @@
     {
       nixosConfigurations.Aspen = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          pkgs = intel-pkgs;
+          inherit inputs;
+          username = defaultUsername;
         };
         modules = [
+          nix-minecraft.nixosModules.minecraft-servers
           {
-            imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
-            nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+            nixpkgs.overlays = [ nix-minecraft.overlay ];
           }
           ./hosts/Aspen
         ];

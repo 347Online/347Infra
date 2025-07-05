@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -27,6 +25,7 @@
     extraGroups = [ "wheel" ];
     packages = with pkgs; [
       tree
+      neovim
     ];
   };
 

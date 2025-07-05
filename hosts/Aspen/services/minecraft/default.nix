@@ -1,14 +1,9 @@
 {
   pkgs,
-  inputs,
   username,
   ...
 }:
 {
-  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
-
-  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
-
   users.users.${username}.extraGroups = [ "minecraft" ];
 
   services.minecraft-servers = {
@@ -18,7 +13,7 @@
     servers = {
       vanilla = {
         enable = true;
-        package = pkgs.minecraftServers.vanilla-1_21_4;
+        package = pkgs.minecraftServers.vanilla-1_21_7;
 
         serverProperties = {
           spawn-protection = 0;
