@@ -8,8 +8,7 @@
     {
       self,
       nixpkgs,
-      nix-minecraft,
-    }:
+    }@inputs:
     let
       defaultUsername = "katie";
       arm-pkgs = import nixpkgs { system = "aarch64-linux"; };
@@ -22,8 +21,8 @@
         };
         modules = [
           {
-            imports = [ nix-minecraft.nixosModules.minecraft-servers ];
-            nixpkgs.overlays = [ nix-minecraft.overlay ];
+            imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
+            nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
           }
           ./hosts/Aspen
         ];
