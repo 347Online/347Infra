@@ -1,7 +1,16 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -9,11 +18,10 @@
       self,
       nixpkgs,
       nix-minecraft,
+      sops-nix,
     }@inputs:
     let
       defaultUsername = "katie";
-      arm-pkgs = import nixpkgs { system = "aarch64-linux"; };
-      intel-pkgs = import nixpkgs { system = "x86_64-linux"; };
     in
     {
       nixosConfigurations.Aspen = nixpkgs.lib.nixosSystem {
@@ -22,18 +30,22 @@
           username = defaultUsername;
         };
         modules = [
+          sops-nix.nixosModules.sops
+
           nix-minecraft.nixosModules.minecraft-servers
-          {
-            nixpkgs.overlays = [ nix-minecraft.overlay ];
-          }
           ./hosts/Aspen
         ];
       };
       nixosConfigurations.Astrid = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          pkgs = arm-pkgs;
+          inherit inputs;
+          username = defaultUsername;
         };
-        modules = [ ./hosts/Astrid ];
+        modules = [
+          sops-nix.nixosModules.sops
+
+          ./hosts/Astrid
+        ];
       };
     };
 }

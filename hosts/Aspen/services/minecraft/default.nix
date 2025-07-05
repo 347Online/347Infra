@@ -1,9 +1,11 @@
 {
   pkgs,
   username,
+  inputs,
   ...
 }:
 {
+  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
   users.users.${username}.extraGroups = [ "minecraft" ];
 
   services.minecraft-servers = {
