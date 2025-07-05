@@ -1,7 +1,10 @@
 {
-  username,
+  config,
+  lib,
+  pkgs,
   ...
 }:
+
 {
   imports = [
     ./services
@@ -9,21 +12,33 @@
     ./hardware-configuration.nix
   ];
 
-  sops.defaultSopsFile = ./.aspen-secrets.yaml;
-
-  services.syncthing.guiAddress = "0.0.0.0:8384";
-
-  environment.enableAllTerminfo = true;
-
   networking = {
-    firewall.enable = false;
     hostName = "Aspen";
+    firewall.enable = false;
   };
+
   time.timeZone = "America/Chicago";
 
-  # Enables cross-build to ARM systems
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  services.printing.enable = true;
+  services.openssh.enable = true;
+
+  users.users.katie = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    packages = with pkgs; [
+      tree
+    ];
+  };
+
+  environment = {
+    enableAllTerminfo = true;
+    systemPackages = with pkgs; [
+      vim
+      wget
+      git
+    ];
+  };
 
   # DO NOT EDIT
-  system.stateVersion = "24.11";
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

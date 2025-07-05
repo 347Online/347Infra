@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nix-minecraft = "github:Infinidoge/nix-minecraft";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs =

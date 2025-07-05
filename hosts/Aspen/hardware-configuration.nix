@@ -8,6 +8,7 @@
   modulesPath,
   ...
 }:
+
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -28,18 +29,22 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/8de3ceb0-0146-4efc-b7fb-38b753505299";
+    device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/D55A-98AC";
+    device = "/dev/disk/by-label/boot";
     fsType = "vfat";
     options = [
       "fmask=0077"
       "dmask=0077"
     ];
   };
+
+  swapDevices = [
+    { device = "/dev/disk/by-label/swap"; }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -51,6 +56,4 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  powerManagement.cpuFreqGovernor = "performance";
 }
