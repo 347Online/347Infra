@@ -1,0 +1,7 @@
+keys:
+  - &primary age1d9kjeae072xl0uhly9y80wq4ayznxxen6kkpv042dp6pg3ta35msve4qhm
+creation_rules:
+  - path_regex: (?:\.ya?ml$|\.env$)
+    key_groups:
+      - age:
+          - *primary 
