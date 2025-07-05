@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 
@@ -37,6 +38,12 @@
       git
     ];
   };
+
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "minecraft-server"
+    ];
 
   # DO NOT EDIT
   system.stateVersion = "24.11"; # Did you read the comment?
