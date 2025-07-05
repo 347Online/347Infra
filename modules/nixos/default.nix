@@ -1,4 +1,4 @@
-{ lib, username, ... }:
+{ lib, ... }:
 {
-  security.pam.services.${username}.sshAgentAuth = lib.mkDefault true;
+  security.pam.enableSSHAgentAuth = lib.mkDefault true;
 }
