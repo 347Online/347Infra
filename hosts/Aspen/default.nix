@@ -38,6 +38,7 @@
       vim
       wget
       git
+      tmux
     ];
   };
 
