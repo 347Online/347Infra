@@ -33,7 +33,6 @@
   };
 
   environment = {
-    enableAllTerminfo = true;
     systemPackages = with pkgs; [
       vim
       wget

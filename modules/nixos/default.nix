@@ -12,4 +12,6 @@
     sshAgentAuth.enable = lib.mkDefault true;
     services.sudo.sshAgentAuth = lib.mkDefault true;
   };
+
+  environment.enableAllTerminfo = true;
 }
