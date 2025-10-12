@@ -33,6 +33,13 @@
     in
     {
       nixosConfigurations = {
+        Aeris = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = nixosSharedModules ++ [
+            ./hosts/Aeris
+          ];
+        };
+
         Aspen = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           modules = nixosSharedModules ++ [
