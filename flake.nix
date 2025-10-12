@@ -26,26 +26,27 @@
         ./modules/nixos
         sops-nix.nixosModules.sops
       ];
+      specialArgs = {
+        inherit inputs;
+        username = defaultUsername;
+      };
     in
     {
-      nixosConfigurations.Aspen = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-          username = defaultUsername;
+      nixosConfigurations = {
+        Aspen = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = nixosSharedModules ++ [
+            nix-minecraft.nixosModules.minecraft-servers
+            ./hosts/Aspen
+          ];
         };
-        modules = nixosSharedModules ++ [
-          nix-minecraft.nixosModules.minecraft-servers
-          ./hosts/Aspen
-        ];
-      };
-      nixosConfigurations.Astrid = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-          username = defaultUsername;
+
+        Astrid = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = nixosSharedModules ++ [
+            ./hosts/Astrid
+          ];
         };
-        modules = nixosSharedModules ++ [
-          ./hosts/Astrid
-        ];
       };
     };
 }
