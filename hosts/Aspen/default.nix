@@ -25,7 +25,4 @@
     builtins.elem (lib.getName pkg) [
       "minecraft-server"
     ];
-
-  # DO NOT EDIT
-  system.stateVersion = "24.11";
 }

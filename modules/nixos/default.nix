@@ -38,4 +38,7 @@
       vim
     ];
   };
+
+  # DO NOT EDIT
+  system.stateVersion = "25.11";
 }
