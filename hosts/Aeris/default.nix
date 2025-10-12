@@ -23,4 +23,7 @@
     mtr
     sysstat
   ];
+
+  # DO NOT EDIT
+  system.stateVersion = "25.05";
 }
