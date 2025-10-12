@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   security.acme = {
     certs."fatgirl.cloud".extraDomainNames = [ "www.fatgirl.cloud" ];

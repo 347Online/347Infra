@@ -18,28 +18,7 @@
     firewall.enable = false;
   };
 
-  time.timeZone = "America/Chicago";
-
   services.printing.enable = true;
-  services.openssh.enable = true;
-
-  users.users.katie = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    packages = with pkgs; [
-      tree
-      neovim
-    ];
-  };
-
-  environment = {
-    systemPackages = with pkgs; [
-      vim
-      wget
-      git
-      tmux
-    ];
-  };
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
@@ -48,5 +27,5 @@
     ];
 
   # DO NOT EDIT
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 }
