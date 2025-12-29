@@ -15,7 +15,7 @@
     servers = {
       vanilla = {
         enable = true;
-        package = pkgs.minecraftServers.vanilla-1_21_7;
+        package = pkgs.minecraftServers.vanilla-1_21_11;
 
         serverProperties = {
           spawn-protection = 0;
