@@ -19,6 +19,7 @@
 
         serverProperties = {
           spawn-protection = 0;
+          difficulty = "normal";
         };
       };
     };
