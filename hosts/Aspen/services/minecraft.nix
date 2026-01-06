@@ -18,8 +18,10 @@
         package = pkgs.minecraftServers.vanilla-1_21_11;
 
         serverProperties = {
-          spawn-protection = 0;
           difficulty = "normal";
+          enforce-whitelist = true;
+          spawn-protection = 0;
+          white-list = true;
         };
       };
     };
