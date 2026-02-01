@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.11";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
@@ -14,46 +15,67 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nix-minecraft,
-      sops-nix,
-    }@inputs:
+    inputs@{ flake-parts, ... }:
     let
       defaultUsername = "katie";
-      nixosSharedModules = [
-        ./modules/nixos
-        sops-nix.nixosModules.sops
-      ];
+
       specialArgs = {
         inherit inputs;
         username = defaultUsername;
       };
     in
-    {
-      nixosConfigurations = {
-        Aeris = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = nixosSharedModules ++ [
-            ./hosts/Aeris
-          ];
-        };
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { config, ... }:
+      {
+        imports = [ ./modules/nixos ];
 
-        Aspen = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = nixosSharedModules ++ [
-            nix-minecraft.nixosModules.minecraft-servers
-            ./hosts/Aspen
-          ];
-        };
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+          "aarch64-darwin"
+          "x86_64-darwin"
+        ];
 
-        Astrid = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = nixosSharedModules ++ [
-            ./hosts/Astrid
-          ];
-        };
-      };
-    };
+        flake.nixosConfigurations =
+          let
+            nixosSharedModules = [
+              config.flake.nixosModules.infra
+              inputs.sops-nix.nixosModules.sops
+            ];
+          in
+          {
+            Aeris = inputs.nixpkgs.lib.nixosSystem {
+              inherit specialArgs;
+              modules = nixosSharedModules ++ [
+                ./hosts/Aeris
+              ];
+            };
+
+            Aspen = inputs.nixpkgs.lib.nixosSystem {
+              inherit specialArgs;
+              modules = nixosSharedModules ++ [
+                inputs.nix-minecraft.nixosModules.minecraft-servers
+                ./hosts/Aspen
+              ];
+            };
+
+            Astrid = inputs.nixpkgs.lib.nixosSystem {
+              inherit specialArgs;
+              modules = nixosSharedModules ++ [
+                ./hosts/Astrid
+              ];
+            };
+          };
+
+        perSystem =
+          { pkgs, ... }:
+          {
+            devShells.default = pkgs.mkShell {
+              buildInputs = [ pkgs.nixos-rebuild-ng ];
+            };
+
+            formatter = pkgs.nixfmt-tree;
+          };
+      }
+    );
 }
