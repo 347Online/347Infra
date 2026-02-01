@@ -34,38 +34,20 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "nix-minecraft": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "flake-utils": "flake-utils",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "systems": "systems"
       },
       "locked": {
-        "lastModified": 1766975172,
-        "narHash": "sha256-cxBO7AN4kZJu2zwgX23fKYKLsxgzft36y8ShSQiSRkk=",
+        "lastModified": 1769936216,
+        "narHash": "sha256-ezgoxbHXGQMufga7aaZNhYZYiXQhaGV4jLAZy0fBhzA=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "a0f29488bed0b2cd7f2111b41f56145cef7cc148",
+        "rev": "ff6604fa8d25c1e1c135a261ddd6b3dcc4443129",
         "type": "github"
       },
       "original": {
@@ -120,11 +102,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760240450,
-        "narHash": "sha256-sa9bS9jSyc4vH0jSWrUsPGdqtMvDwmkLg971ntWOo2U=",
+        "lastModified": 1769921679,
+        "narHash": "sha256-twBMKGQvaztZQxFxbZnkg7y/50BW9yjtCBWwdjtOZew=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "41fd1f7570c89f645ee0ada0be4e2d3c4b169549",
+        "rev": "1e89149dcfc229e7e2ae24a8030f124a31e4f24f",
         "type": "github"
       },
       "original": {
