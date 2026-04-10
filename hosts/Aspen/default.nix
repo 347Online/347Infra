@@ -1,6 +1,6 @@
 {
-  pkgs,
   lib,
+  username,
   ...
 }:
 
@@ -25,6 +25,8 @@
     builtins.elem (lib.getName pkg) [
       "minecraft-server"
     ];
+
+  nix.settings.trusted-users = [ username ];
 
   # DO NOT EDIT
   system.stateVersion = "24.11";

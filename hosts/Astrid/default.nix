@@ -1,5 +1,5 @@
 {
-  pkgs,
+  username,
   ...
 }:
 
@@ -18,6 +18,8 @@
     80
     443
   ];
+
+  nix.settings.trusted-users = [ username ];
 
   # DO NOT EDIT
   system.stateVersion = "25.11";

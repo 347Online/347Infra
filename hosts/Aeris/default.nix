@@ -24,6 +24,8 @@
     sysstat
   ];
 
+  nix.settings.trusted-users = [ username ];
+
   # DO NOT EDIT
   system.stateVersion = "25.05";
 }
