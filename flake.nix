@@ -12,6 +12,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    obsidian-headless-src = {
+      url = "github:obsidianmd/obsidian-headless/5f51535b744625ee2cf47d61f704d4d9276590b7";
+      flake = false;
+    };
   };
 
   outputs =
@@ -27,7 +32,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } (
       { config, ... }:
       {
-        imports = [ ./modules/nixos ];
+        imports = [ ./modules ];
 
         systems = [
           "x86_64-linux"

@@ -87,11 +87,29 @@
         "type": "github"
       }
     },
+    "obsidian-headless-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774194884,
+        "narHash": "sha256-RnLiCbAgetMO8pXYNjNW7fPeR8O7/Zz2i/x5OXOL+8U=",
+        "owner": "obsidianmd",
+        "repo": "obsidian-headless",
+        "rev": "5f51535b744625ee2cf47d61f704d4d9276590b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obsidianmd",
+        "repo": "obsidian-headless",
+        "rev": "5f51535b744625ee2cf47d61f704d4d9276590b7",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs",
+        "obsidian-headless-src": "obsidian-headless-src",
         "sops-nix": "sops-nix"
       }
     },
