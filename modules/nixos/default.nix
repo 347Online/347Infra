@@ -1,4 +1,3 @@
-{ system, config, ... }:
 {
   flake.nixosModules = rec {
     infra =
@@ -10,16 +9,17 @@
       }:
       {
         sops.age.keyFile = lib.mkDefault "/home/${username}/.config/sops/age/keys.txt";
+
         nix = {
           settings = {
-            experimental-features = lib.mkDefault "nix-command flakes";
-            trusted-users = lib.mkDefault [ username ];
+            experimental-features = "nix-command flakes";
+            trusted-users = [ username ];
           };
         };
 
         security.pam = {
-          sshAgentAuth.enable = lib.mkDefault true;
-          services.sudo.sshAgentAuth = lib.mkDefault true;
+          sshAgentAuth.enable = true;
+          services.sudo.sshAgentAuth = true;
         };
 
         users.users.${username} = {
@@ -40,8 +40,6 @@
             git
             tmux
             vim
-            neovim
-            config.flake.packages.${system}.obsidian-headless
           ];
         };
       };

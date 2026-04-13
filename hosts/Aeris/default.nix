@@ -3,7 +3,6 @@
   username,
   ...
 }:
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -11,9 +10,6 @@
   ];
 
   networking.hostName = "Aeris";
-  networking.usePredictableInterfaceNames = false;
-  networking.useDHCP = false;
-  networking.interfaces.eth0.useDHCP = true;
 
   users = {
     groups.github-actions = { };
@@ -37,8 +33,6 @@
     mtr
     sysstat
   ];
-
-  nix.settings.trusted-users = [ username ];
 
   # DO NOT EDIT
   system.stateVersion = "25.05";
