@@ -14,7 +14,7 @@
           (pkgs.writeShellApplication {
             name = "deploy-all";
             text = ''
-              for x in {aspen,astrid,172.233.131.81}; do
+              for x in {aspen,astrid,347online.me}; do
                 nixos-rebuild-ng switch --build-host aspen --target-host "$x" --flake . --use-substitutes --sudo --ask-sudo-password
               done
             '';
