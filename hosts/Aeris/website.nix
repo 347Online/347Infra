@@ -20,6 +20,16 @@
         };
       };
     };
+
+    "20-second-brain" = {
+      "/var/www/brain" = {
+        d = {
+          group = "github-actions";
+          mode = "0755";
+          user = "github-actions";
+        };
+      };
+    };
   };
 
   services.nginx = {
@@ -46,6 +56,7 @@
       "brain.347Online.me" = {
         forceSSL = true;
         enableACME = true;
+        root = "/var/www/brain";
       };
 
       "blog.347Online.me" = {
