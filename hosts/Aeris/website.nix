@@ -12,6 +12,11 @@
   services.nginx = {
     enable = true;
 
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+
     virtualHosts."347Online.me" = {
       forceSSL = true;
       enableACME = true;
