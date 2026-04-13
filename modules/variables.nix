@@ -1,0 +1,5 @@
+{
+  flake.variables = {
+    defaultUsername = "katie";
+  };
+}

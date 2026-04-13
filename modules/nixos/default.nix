@@ -1,3 +1,4 @@
+{ inputs, self, ... }:
 {
   flake.nixosModules = rec {
     infra =
@@ -8,6 +9,8 @@
         ...
       }:
       {
+        imports = [ inputs.sops-nix.nixosModules.sops ];
+
         sops.age.keyFile = lib.mkDefault "/home/${username}/.config/sops/age/keys.txt";
 
         nix = {
