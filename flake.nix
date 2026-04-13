@@ -44,8 +44,8 @@
         flake.nixosConfigurations =
           let
             nixosSharedModules = [
-              config.flake.nixosModules.infra
               inputs.sops-nix.nixosModules.sops
+              config.flake.nixosModules.default
             ];
           in
           {
@@ -76,6 +76,7 @@
           { pkgs, ... }:
           {
             devShells.default = pkgs.mkShell {
+              buildInputs = [ pkgs.nixos-rebuild-ng ];
               packages = [
                 (pkgs.writeShellApplication {
                   name = "deploy-to";
@@ -92,7 +93,6 @@
                   '';
                 })
               ];
-              buildInputs = [ pkgs.nixos-rebuild-ng ];
             };
 
             formatter = pkgs.nixfmt-tree;

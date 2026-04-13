@@ -1,45 +1,51 @@
+{ system, config, ... }:
 {
-  flake.nixosModules.infra =
-    {
-      pkgs,
-      lib,
-      username,
-      ...
-    }:
-    {
-      sops.age.keyFile = lib.mkDefault "/home/${username}/.config/sops/age/keys.txt";
-      nix = {
-        settings = {
-          experimental-features = lib.mkDefault "nix-command flakes";
-          trusted-users = lib.mkDefault [ username ];
+  flake.nixosModules = rec {
+    infra =
+      {
+        pkgs,
+        lib,
+        username,
+        ...
+      }:
+      {
+        sops.age.keyFile = lib.mkDefault "/home/${username}/.config/sops/age/keys.txt";
+        nix = {
+          settings = {
+            experimental-features = lib.mkDefault "nix-command flakes";
+            trusted-users = lib.mkDefault [ username ];
+          };
+        };
+
+        security.pam = {
+          sshAgentAuth.enable = lib.mkDefault true;
+          services.sudo.sshAgentAuth = lib.mkDefault true;
+        };
+
+        users.users.${username} = {
+          isNormalUser = true;
+          extraGroups = [
+            "wheel"
+            "networkmanager"
+          ];
+        };
+
+        time.timeZone = "America/Chicago";
+
+        services.openssh.enable = true;
+
+        environment = {
+          enableAllTerminfo = true;
+          systemPackages = with pkgs; [
+            git
+            tmux
+            vim
+            neovim
+            config.flake.packages.${system}.obsidian-headless
+          ];
         };
       };
 
-      security.pam = {
-        sshAgentAuth.enable = lib.mkDefault true;
-        services.sudo.sshAgentAuth = lib.mkDefault true;
-      };
-
-      users.users.${username} = {
-        isNormalUser = true;
-        extraGroups = [
-          "wheel"
-          "networkmanager"
-        ];
-      };
-
-      time.timeZone = "America/Chicago";
-
-      services.openssh.enable = true;
-
-      environment = {
-        enableAllTerminfo = true;
-        systemPackages = with pkgs; [
-          git
-          tmux
-          vim
-        ];
-      };
-
-    };
+    default = infra;
+  };
 }
