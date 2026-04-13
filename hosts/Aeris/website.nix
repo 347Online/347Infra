@@ -19,8 +19,8 @@
       "/var/www/347Online.me" = {
         d = {
           group = "github-actions";
-          mode = "0755";
           user = "github-actions";
+          mode = "0755";
         };
       };
     };
@@ -29,8 +29,8 @@
       "/var/www/brain" = {
         d = {
           group = "github-actions";
-          mode = "0755";
           user = "github-actions";
+          mode = "0755";
         };
       };
     };
@@ -59,13 +59,13 @@
 
       "brain.347online.me" = {
         forceSSL = true;
-        enableACME = true;
+        useACMEHost = "347online.me";
         root = "/var/www/brain";
       };
 
       "blog.347online.me" = {
         forceSSL = true;
-        enableACME = true;
+        useACMEHost = "347online.me";
         globalRedirect = "347Online.me/blog";
       };
     };
