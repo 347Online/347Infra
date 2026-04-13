@@ -54,19 +54,18 @@
       "www.347online.me" = {
         forceSSL = true;
         useACMEHost = "347online.me";
-        globalRedirect = "347Online.me";
+        globalRedirect = "347online.me";
       };
 
-      "brain.347online.me" = {
-        forceSSL = true;
-        useACMEHost = "347online.me";
-        root = "/var/www/brain";
-      };
+      # "brain.347online.me" = {
+      #   forceSSL = true;
+      #   useACMEHost = "347online.me";
+      # };
 
       "blog.347online.me" = {
         forceSSL = true;
         useACMEHost = "347online.me";
-        globalRedirect = "347Online.me/blog";
+        globalRedirect = "347online.me/blog";
       };
     };
   };
