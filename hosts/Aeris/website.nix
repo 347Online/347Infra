@@ -5,7 +5,11 @@
   ];
 
   security.acme = {
-    certs."347Online.me".extraDomainNames = [ "www.347Online.me" ];
+    certs."347online.me".extraDomainNames = [
+      "www.347online.me"
+      "blog.347online.me"
+      "brain.347online.me"
+    ];
     acceptTerms = true;
     defaults.email = "katiejanzen@347online.me";
   };
@@ -41,25 +45,25 @@
     recommendedTlsSettings = true;
 
     virtualHosts = {
-      "347Online.me" = {
+      "347online.me" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/347Online.me";
       };
 
-      "www.347Online.me" = {
+      "www.347online.me" = {
         forceSSL = true;
-        useACMEHost = "347Online.me";
+        useACMEHost = "347online.me";
         globalRedirect = "347Online.me";
       };
 
-      "brain.347Online.me" = {
+      "brain.347online.me" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/brain";
       };
 
-      "blog.347Online.me" = {
+      "blog.347online.me" = {
         forceSSL = true;
         enableACME = true;
         globalRedirect = "347Online.me/blog";
