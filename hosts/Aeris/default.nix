@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./website.nix
   ];
 
   networking.hostName = "Aeris";
