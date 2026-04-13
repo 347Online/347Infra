@@ -31,6 +31,18 @@
     };
   };
 
+  systemd.tmpfiles.settings = {
+    "10-347Online.me" = {
+      "/var/www/347Online.me" = {
+        d = {
+          group = "github-actions";
+          mode = "0755";
+          user = "github-actions";
+        };
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     inetutils
     mtr
