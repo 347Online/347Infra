@@ -10,6 +10,18 @@
     defaults.email = "katiejanzen@347online.me";
   };
 
+  systemd.tmpfiles.settings = {
+    "10-347Online.me" = {
+      "/var/www/347Online.me" = {
+        d = {
+          group = "github-actions";
+          mode = "0755";
+          user = "github-actions";
+        };
+      };
+    };
+  };
+
   services.nginx = {
     enable = true;
 
