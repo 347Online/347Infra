@@ -28,6 +28,8 @@
   services.nginx = {
     enable = true;
 
+    enableReload = true;
+
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;
@@ -38,6 +40,8 @@
         forceSSL = true;
         enableACME = true;
         root = "/var/www/347Online.me";
+        locations."/".tryFiles = "$uri =404";
+        extraConfig = "error_page 404 /404.html;";
       };
 
       "www.347online.me" = {
