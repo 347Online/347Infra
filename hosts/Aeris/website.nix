@@ -40,7 +40,7 @@
         forceSSL = true;
         enableACME = true;
         root = "/var/www/347Online.me";
-        locations."/".tryFiles = "$uri =404";
+        locations."/".tryFiles = "$uri $uri/ =404";
         extraConfig = "error_page 404 /404.html;";
       };
 
