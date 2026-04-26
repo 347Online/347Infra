@@ -66,7 +66,7 @@
       "campsiterule.net" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".return = "301 https://en.wikipedia.org/wiki/Leaving_the_world_a_better_place";
+        locations."/".return = "302 https://en.wikipedia.org/wiki/Leaving_the_world_a_better_place";
       };
 
       "www.campsiterule.net" = {
