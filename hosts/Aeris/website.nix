@@ -5,10 +5,15 @@
   ];
 
   security.acme = {
-    certs."347online.me".extraDomainNames = [
-      "www.347online.me"
-      "blog.347online.me"
-    ];
+    certs = {
+      "347online.me".extraDomainNames = [
+        "www.347online.me"
+        "blog.347online.me"
+      ];
+      "campsiterule.net".extraDomainNames = [
+        "www.campsiterule.net"
+      ];
+    };
     acceptTerms = true;
     defaults.email = "katiejanzen@347online.me";
   };
@@ -36,6 +41,7 @@
     recommendedTlsSettings = true;
 
     virtualHosts = {
+      # 347online.me
       "347online.me" = {
         forceSSL = true;
         enableACME = true;
@@ -54,6 +60,19 @@
         forceSSL = true;
         useACMEHost = "347online.me";
         globalRedirect = "347online.me/blog";
+      };
+
+      # campsiterule.net
+      "campsiterule.net" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".return = "301 https://en.wikipedia.org/wiki/Leaving_the_world_a_better_place";
+      };
+
+      "www.campsiterule.net" = {
+        forceSSL = true;
+        useACMEHost = "campsiterule.net";
+        globalRedirect = "campsiterule.net";
       };
     };
   };
