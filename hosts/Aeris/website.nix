@@ -64,9 +64,9 @@
 
       # campsiterule.net
       "campsiterule.net" = {
-        forceSSL = true;
+        addSSL = true;
         enableACME = true;
-        locations."/".return = "302 https://en.wikipedia.org/wiki/Leaving_the_world_a_better_place";
+        locations."/".return = "307 https://en.wikipedia.org/wiki/Leaving_the_world_a_better_place";
       };
 
       "www.campsiterule.net" = {
