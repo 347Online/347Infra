@@ -33,7 +33,7 @@
           ];
         };
 
-        time.timeZone = "America/Chicago";
+        time.timeZone = "America/Denver";
 
         services.openssh.enable = true;
 
