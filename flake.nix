@@ -18,6 +18,11 @@
       url = "github:obsidianmd/obsidian-headless/5f51535b744625ee2cf47d61f704d4d9276590b7";
       flake = false;
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
