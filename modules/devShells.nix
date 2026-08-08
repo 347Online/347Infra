@@ -1,6 +1,12 @@
+{ self, inputs, ... }:
 {
   perSystem =
-    { pkgs, lib, ... }:
+    {
+      system,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       devShells.default = pkgs.mkShell {
         packages =
@@ -8,6 +14,7 @@
             nixos-rebuild-ng = lib.getExe pkgs.nixos-rebuild-ng;
           in
           [
+            inputs.deploy-rs.packages.${system}.default
             (pkgs.writeShellApplication {
               name = "deploy-to";
               text = ''
