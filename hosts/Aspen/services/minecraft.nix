@@ -15,7 +15,7 @@
     servers = {
       vanilla = {
         enable = true;
-        package = pkgs.minecraftServers.vanilla-1_21_11;
+        package = pkgs.minecraftServers.vanilla-26_2;
 
         serverProperties = {
           difficulty = "normal";
